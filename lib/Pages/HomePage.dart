@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:newsappus/Network/NewsServices.dart';
 import 'package:newsappus/Pages/DetailsPage.dart';
+import 'package:newsappus/Theme/AppColor.dart';
+import 'package:newsappus/Theme/theme_data_light.dart';
 import 'package:newsappus/constant.dart';
 
 import '../Model/TopHeadlineNews.dart';
@@ -73,23 +75,19 @@ class _HomePageState extends State<HomePage> {
                 'News Today',
                  style: GoogleFonts.abrilFatface(
                    textStyle: TextStyle(
-                     color: Theme.of(context).primaryColor,
+                       color: Color(0xFF1A237E),
                      fontSize: 28,
                         fontWeight: FontWeight.bold
 
                    )
                  )
-                 // TextStyle(
-                //   color: Theme.of(context).primaryColor,
-                //   fontSize: 28,
-                //   fontWeight: FontWeight.bold
-                // ),
+
               ),
               SizedBox(height:0),
               Text(
                 currentDate,
-                style: const TextStyle(
-                  color: Color(0xFF616161),
+                style:  TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
                   fontSize: 15,
                 ),
               )
@@ -105,10 +103,15 @@ class _HomePageState extends State<HomePage> {
                     NEWSAPP.themeNotfifier.value == ThemeMode.light
                         ? ThemeMode.dark
                         : ThemeMode.light;
+
               },
               icon: Icon(NEWSAPP.themeNotfifier.value == ThemeMode.light
                   ? Icons.dark_mode
-                  : Icons.light_mode,))
+
+                  : Icons.light_mode,color: Colors.amber,
+
+              )
+          )
         ],
         elevation: 0.0,
         systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -119,15 +122,16 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Categories(
-              width: width,
-              height: height,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
               onCategorySelected: fetchNewsByCategory,
+
             ),
-            const ListTile(
+             ListTile(
               title: Text(
                 'Latest News',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.primary,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -135,7 +139,7 @@ class _HomePageState extends State<HomePage> {
               subtitle: Text(
                 'Most Recent at the moment',
                 style: TextStyle(
-                  color: Color(0xFF616161),
+                  color: Theme.of(context).colorScheme.secondary,
                   fontSize: 13,
                 ),
               ),
@@ -189,11 +193,7 @@ class _HomePageState extends State<HomePage> {
                                   );
                                 },
                                 child: Card(
-                                  color: Colors.white,
-                                  elevation: 2.0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
+
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -206,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
-                                              color: Color(0xFF1A237E),
+
                                             ),
                                           ),
                                         ),
@@ -298,7 +298,6 @@ class Categories extends StatelessWidget {
                 height: 90,
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
                   boxShadow: const [
                     BoxShadow(
@@ -332,7 +331,7 @@ class Categories extends StatelessWidget {
                           Text(
                             item.name,
                             style:TextStyle(
-                              color: Colors.black,
+                              color: Theme.of(context).colorScheme.primary,
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                             )

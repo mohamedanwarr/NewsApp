@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -11,7 +12,7 @@ class DetailsPage extends StatefulWidget {
   final String? author;
   final String? content;
 
-  DetailsPage({
+  const DetailsPage({super.key,
     required this.url,
     required this.urlToImage,
     required this.publishedAt,
@@ -26,12 +27,32 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  late WebViewController _controller;
-
+  late final WebViewController controller;
+var loadingPercentage=0;
   @override
   void initState() {
     super.initState();
-    _controller = WebViewController();
+    controller = WebViewController()
+    ..setNavigationDelegate(NavigationDelegate(
+      onPageStarted: (url){
+        setState(() {
+          loadingPercentage = 0;
+        });
+      },
+      onProgress: (progress){
+        setState(() {
+          loadingPercentage=progress;
+        });
+      },
+      onPageFinished: (url){
+        setState(() {
+          loadingPercentage = 100;
+        });
+      }
+    ))
+      ..loadRequest(
+        Uri.parse('${widget.url}'),
+      );
   }
 
   void author() {
@@ -67,12 +88,12 @@ class _DetailsPageState extends State<DetailsPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
+                        // color: Colors.grey.withOpacity(0.3),
                         blurRadius: 3,
-                        offset: const Offset(0, 2),
+                        offset: Offset(0, 2),
                       )
                     ],
                     color: Colors.white,
@@ -93,7 +114,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
+                        color: Theme.of(context).shadowColor,
                         blurRadius: 3,
                         offset: const Offset(0, 2),
                       )
@@ -141,7 +162,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     textStyle: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF1A237E),
+                      // color: Color(0xFF1A237E),
                     ),
                   ),
                 ),
@@ -154,12 +175,12 @@ class _DetailsPageState extends State<DetailsPage> {
               children: [
                 Expanded(
                     child: Text(
-                  "${widget.author != null ? widget.author : "Unknown Author"}",
+                  widget.author ?? "Unknown Author",
                   style: GoogleFonts.openSans(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      color: Colors.grey[800],
+                      // color: Colors.grey[800],
                     ),
                   ),
                 )),
@@ -167,10 +188,10 @@ class _DetailsPageState extends State<DetailsPage> {
                 Text(
                   "${widget.publishedAt}",
                   style: GoogleFonts.openSans(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      color: Colors.grey[800],
+                      // color: Colors.grey[800],
                     ),
                   ),
                 )
@@ -182,17 +203,17 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Text(
                 "${widget.content == null || widget.content!.isEmpty ? "not found content" : widget.author}",
                 style: GoogleFonts.openSans(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey[700],
+                    // color: Colors.grey[700],
                   ),
                 ),
               )),
 
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Container(
+            child: SizedBox(
               width: width,
               height: height * .07,
               child: TextButton(
@@ -203,12 +224,13 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                 ),
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => WebViwepage(url: widget.url),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Webviwe(controller: controller),
+                    ),
+
+                  );
                 },
                 child: Text(
                   'Read More',
@@ -229,21 +251,25 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 }
 
-// class WebViwepage extends StatelessWidget {
-//   final String? url;
-//
-//   WebViwepage({Key? key, required this.url}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Web View'),
-//       ),
-//       body: WebView(
-//         initialUrl: url,
-//         javascriptMode: JavascriptMode.unrestricted,
-//       ),
-//     );
-//   }
-// }
+class Webviwe extends StatelessWidget {
+  const Webviwe({
+    super.key,
+    required this.controller,
+  });
+
+  final WebViewController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text
+        ('Web Viwe'),
+        centerTitle: true,
+      ),
+      body: WebViewWidget(
+        controller: controller,
+      ),
+    );
+  }
+}
+

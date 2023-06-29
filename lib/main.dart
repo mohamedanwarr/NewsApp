@@ -1,8 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:newsappus/Theme/theme_data_light.dart';
+import 'package:newsappus/Theme_Data_Dark.dart';
 
 import 'Pages/SplashScreen.dart';
+import 'Theme/theme_data_dark.dart';
 
 void main() {
   runApp( NEWSAPP());
@@ -26,8 +29,8 @@ class NEWSAPP extends StatelessWidget {
       builder:(_,ThemeMode
       curruntMode,$){
         return    MaterialApp(
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
+          theme:getThemeDataLight(),
+          darkTheme:getThemeDataDark(),
           themeMode: curruntMode,
           debugShowCheckedModeBanner: false,
           home: SplashScreen(),
