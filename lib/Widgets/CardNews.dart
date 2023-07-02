@@ -20,9 +20,9 @@ class CardNews extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
 
-                "${text}"
+                "$text"
                 ,
-                style:  TextStyle(
+                style:  const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -38,7 +38,7 @@ class CardNews extends StatelessWidget {
               borderRadius:
               BorderRadius.circular(20),
               child: Image.network(
-                "${image}",
+                "$image",
                 fit: BoxFit.cover,
                 errorBuilder: (BuildContext context,
                     Object exception,

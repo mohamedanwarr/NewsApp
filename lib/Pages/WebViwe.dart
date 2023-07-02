@@ -18,7 +18,7 @@ class _WebviweState extends State<Webviwe> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text
-        ('Web Viwe'),
+        ('Read More'),
         centerTitle: true,
       ),
       body: WebViewWidget(

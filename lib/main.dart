@@ -16,7 +16,7 @@ void main() {
     ChangeNotifierProvider<CategoryProvider>(
       create: (context) => CategoryProvider(),
     ),
-  ], child: NEWSAPP()));
+  ], child: const NEWSAPP()));
 }
 
 class NEWSAPP extends StatelessWidget {
