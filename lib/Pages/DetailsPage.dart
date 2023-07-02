@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'WebViwe.dart';
+
 class DetailsPage extends StatefulWidget {
   final String? url;
   final String? urlToImage;
@@ -55,25 +57,7 @@ var loadingPercentage=0;
       );
   }
 
-  void author() {
-    setState(() {
-      if (widget.author == null || widget.author!.isEmpty) {
-        const Text('');
-      } else {
-        widget.author;
-      }
-    });
-  }
 
-  void poster() {
-    setState(() {
-      if (widget.urlToImage == null || widget.urlToImage!.isEmpty) {
-        Image.asset("assets/not found.png");
-      } else {
-        widget.urlToImage;
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -250,26 +234,3 @@ var loadingPercentage=0;
     );
   }
 }
-
-class Webviwe extends StatelessWidget {
-  const Webviwe({
-    super.key,
-    required this.controller,
-  });
-
-  final WebViewController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text
-        ('Web Viwe'),
-        centerTitle: true,
-      ),
-      body: WebViewWidget(
-        controller: controller,
-      ),
-    );
-  }
-}
-
