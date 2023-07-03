@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  AnimatedSplashScreen(
         splash: Lottie.asset('assets/newslogo.json'),
-        duration: 3000,
+        duration: 4000,
         splashIconSize: 250,
         backgroundColor: Colors.white,
         splashTransition: SplashTransition.fadeTransition,

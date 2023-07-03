@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
+
 class CardNews extends StatelessWidget {
   CardNews({
-    required this.text,required this.image,
+    required this.text,
+    required this.image,
     super.key,
   });
-  String ?text;
-  String ?image;
+
+  String? text;
+  String? image;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Row(
-        crossAxisAlignment:
-        CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             flex: 2,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-
-                "$text"
-                ,
-                style:  const TextStyle(
+                "$text",
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -35,16 +35,14 @@ class CardNews extends StatelessWidget {
           Expanded(
             flex: 1,
             child: ClipRRect(
-              borderRadius:
-              BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20),
               child: Image.network(
                 "$image",
                 fit: BoxFit.cover,
-                errorBuilder: (BuildContext context,
-                    Object exception,
+                errorBuilder: (BuildContext context, Object exception,
                     StackTrace? stackTrace) {
                   return Image.asset(
-                    'assets/not found.png  ',
+                    'assets/not found.png',
                     fit: BoxFit.contain,
                   );
                 },
@@ -56,4 +54,3 @@ class CardNews extends StatelessWidget {
     );
   }
 }
-

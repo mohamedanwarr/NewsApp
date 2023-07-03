@@ -1,3 +1,4 @@
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappus/Widgets/HeaderDetalis.dart';
@@ -67,22 +68,28 @@ class _DetailsPageState extends State<DetailsPage> {
         height: height,
         widget: widget,
         image: widget.urlToImage ?? 'assets/not found.png',
-        title: '${widget.title}', subtitle: widget.author ?? "Unknown Author",
+        title: '${widget.title}',
+        subtitle: widget.author ?? "Unknown Author",
       ),
       Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "${widget.content == null || widget.content!.isEmpty ? "not found content" : widget.content}",
-              style: GoogleFonts.openSans(
-                textStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  // color: Colors.grey[700],
+            ExpandableText(
+
+              maxLines: 5,
+              expandText: '',
+              collapseText: "show less",
+                "${widget.content == null || widget.content!.isEmpty ? "not found content" : widget.content}",
+                style: GoogleFonts.openSans(
+                  textStyle: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    // color: Colors.grey[700],
+                  ),
                 ),
-              ),
+
             ),
             const SizedBox(
               height: 10,
