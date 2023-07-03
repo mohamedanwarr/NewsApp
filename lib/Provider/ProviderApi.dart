@@ -14,16 +14,21 @@ class CategoryProvider extends ChangeNotifier {
     } else {
       _news = Serviceapi.fetchTopHeadlinesByCategory(category);
     }
-    notifyListeners();
+    notifyListenersAfterBuild();
   }
 
   Future<void> refreshNews() async {
-
     if (selectedCategory == "All") {
       _news = Serviceapi.fetchTopNews();
     } else {
       _news = Serviceapi.fetchTopHeadlinesByCategory(selectedCategory!);
     }
-notifyListeners();
+notifyListenersAfterBuild();
+  }
+
+  void notifyListenersAfterBuild() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
   }
 }

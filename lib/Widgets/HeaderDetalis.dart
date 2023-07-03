@@ -52,10 +52,10 @@ class HeaderDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: width=38,
-                    height: height=38,
+                    width: width=40,
+                    height: height=40,
                     decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0x99f1f1f1)),
+                        border: Border.all(color: const Color(0x99f1f1f1),width: 2),
                         borderRadius: BorderRadius.circular(100),
                       ),
                     child: IconButton(
@@ -73,7 +73,8 @@ class HeaderDetails extends StatelessWidget {
                     width: 38,
                     height: 38,
                     decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0x99f1f1f1)),
+
+                        border: Border.all(color: const Color(0x99f1f1f1),width: 2 ),
                         borderRadius: BorderRadius.circular(100),
                     ),
                     child: IconButton(

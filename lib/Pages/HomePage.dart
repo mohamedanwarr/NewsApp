@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:newsappus/Pages/DetailsPage.dart';
 import 'package:newsappus/Provider/ProviderApi.dart';
 import 'package:newsappus/Provider/ProviderTheme.dart';
+import 'package:newsappus/Provider/Provider_currunt%20_date.dart';
 
 import 'package:provider/provider.dart';
 
@@ -14,30 +14,17 @@ import '../Widgets/CategoryList.dart';
 import '../main.dart';
 
 class HomePage extends StatefulWidget {
-
-   const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  String currentDate = '';
-  String? selectedCategory;
-
   @override
   void initState() {
     super.initState();
     context.read<CategoryProvider>().setCategory('All');
-    getCurrentDate();
-  }
-
-  void getCurrentDate() {
-    var now = DateTime.now();
-    var formatter = DateFormat('d MMMM, y');
-    setState(() {
-      currentDate = formatter.format(now);
-    });
   }
 
   @override
@@ -61,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.bold))),
               const SizedBox(height: 0),
               Text(
-                currentDate,
+                context.watch<curruntdate>().currentDate,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                   fontSize: 15,
@@ -71,16 +58,21 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: [
-          IconButton(
-              padding: EdgeInsets.zero,
-              splashColor: Colors.transparent,
-              onPressed: () => context.read<providertheme>().changetheme(),
-              icon: Icon(
-                NEWSAPP.themeNotfifier.value == ThemeMode.light
-                    ? Icons.dark_mode
-                    : Icons.light_mode,
-                color: Colors.amber,
-              ))
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: IconButton(
+                  padding: EdgeInsets.zero,
+                  splashColor: Colors.transparent,
+                  onPressed: () => context.read<providertheme>().changetheme(),
+                  icon: Icon(
+                    NEWSAPP.themeNotfifier.value == ThemeMode.light
+                        ? Icons.dark_mode
+                        : Icons.light_mode,
+                    color: Colors.amber,
+                  )),
+            ),
+          )
         ],
         elevation: 0.0,
         systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -116,7 +108,9 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
               child: RefreshIndicator(
-                onRefresh: () => context.read<CategoryProvider>().refreshNews(),
+                onRefresh: () {
+                  return context.read<CategoryProvider>().refreshNews();
+                },
                 child: Consumer<CategoryProvider>(
                   builder: (context, CategoryProvider, child) {
                     final news = CategoryProvider.news;

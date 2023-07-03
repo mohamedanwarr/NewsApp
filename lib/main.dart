@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newsappus/Provider/Provider_currunt%20_date.dart';
 import 'package:newsappus/Theme/theme_data_light.dart';
 import 'package:provider/provider.dart';
 
@@ -32,6 +33,13 @@ class NEWSAPP extends StatelessWidget {
         ),
         ChangeNotifierProvider<CategoryProvider>(
           create: (context) => CategoryProvider(),
+        ),
+        ChangeNotifierProvider<curruntdate>(
+          create: (context){
+            final currentDateProvider = curruntdate();
+            currentDateProvider.updateCurrentDate(); // Update the current date
+            return currentDateProvider;
+          },
         ),
       ],
       child: ValueListenableBuilder<ThemeMode>(
