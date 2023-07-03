@@ -44,7 +44,7 @@ class CardNews extends StatelessWidget {
                     Object exception,
                     StackTrace? stackTrace) {
                   return Image.asset(
-                    'assets/not found.png',
+                    'assets/not found.png  ',
                     fit: BoxFit.contain,
                   );
                 },
