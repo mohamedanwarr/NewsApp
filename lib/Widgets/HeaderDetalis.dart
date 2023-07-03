@@ -2,32 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Pages/DetailsPage.dart';
-class HeaderDetails extends StatefulWidget {
-  const HeaderDetails({
+class HeaderDetails extends StatelessWidget {
+   HeaderDetails({
     super.key,
     required this.height,
     required this.widget,
+     required this.image,
+     required this.title,
+     required this.subtitle,
   });
-
+  String ?image;
+  String ?title;
+  String ?subtitle;
   final double height;
   final DetailsPage widget;
-
-  @override
-  State<HeaderDetails> createState() => _HeaderDetailsState();
-}
-
-class _HeaderDetailsState extends State<HeaderDetails> {
-  bool isBackButtonHovered = false;
-  bool isShareButtonHovered = false;
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Container(
-      width: double.infinity,
-      height: widget.height * .5,
+      width:width *double.infinity,
+      height: height * .5,
       decoration: BoxDecoration(
         image: DecorationImage(
             image: NetworkImage(
-              widget.widget.urlToImage ?? 'assets/not found.png',
+              "$image"
             ),
             fit: BoxFit.cover,
             onError: (Object exception, StackTrace? stackTrace) {
@@ -53,12 +52,12 @@ class _HeaderDetailsState extends State<HeaderDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 38,
-                    height: 38,
+                    width: width=38,
+                    height: height=38,
                     decoration: BoxDecoration(
                         border: Border.all(color: const Color(0x99f1f1f1)),
                         borderRadius: BorderRadius.circular(100),
-                        color: isBackButtonHovered?Colors.grey.withOpacity(0.7) : Colors.transparent,),
+                      ),
                     child: IconButton(
                       icon: const Icon(
                         Icons.arrow_back_ios_new,
@@ -89,13 +88,13 @@ class _HeaderDetailsState extends State<HeaderDetails> {
                 ],
               ),
               const SizedBox(
-                height: 170,
+                height:170,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${widget.widget.title}',
+                    '$title',
                     style: GoogleFonts.openSans(
                       textStyle: const TextStyle(
                         color: Colors.white,
@@ -109,7 +108,7 @@ class _HeaderDetailsState extends State<HeaderDetails> {
                     height: 10,
                   ),
                   Text(
-                    widget.widget.author ?? "Unknown Author",
+                    "$subtitle",
                     style: GoogleFonts.openSans(
                       textStyle: const TextStyle(
                         color: Colors.white,

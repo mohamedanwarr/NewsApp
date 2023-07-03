@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../Provider/ProviderApi.dart';
 import '../constant.dart';
 class Categories extends StatelessWidget {
 
@@ -18,7 +16,6 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var categoryProvider = Provider.of<CategoryProvider>(context);
     return SizedBox(
       width: width,
       height: height * .2,
@@ -33,7 +30,7 @@ class Categories extends StatelessWidget {
             padding: const EdgeInsets.only(left: 2, right: 2),
             child: GestureDetector(
               onTap: () {
-                categoryProvider.setCategory(item.name);
+                // categoryProvider.setCategory(item.name);
 
                 onCategorySelected(item.name);
               },

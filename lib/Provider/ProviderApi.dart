@@ -4,23 +4,26 @@ import '../Model/TopHeadlineNews.dart';
 import '../Network/NewsServices.dart';
 
 class CategoryProvider extends ChangeNotifier {
-  String _selectedCategory = 'All';
   Future<TopHeadline>? _news;
-  String get selectedCategory => _selectedCategory;
   Future<TopHeadline>? get news => _news;
+  String? selectedCategory;
 
   void setCategory(String category) {
-    _selectedCategory = category;
-    refreshNews();
+    if (category == 'All') {
+      _news = Serviceapi.fetchTopNews();
+    } else {
+      _news = Serviceapi.fetchTopHeadlinesByCategory(category);
+    }
     notifyListeners();
   }
 
   Future<void> refreshNews() async {
-    if (_selectedCategory == 'All') {
+
+    if (selectedCategory == "All") {
       _news = Serviceapi.fetchTopNews();
     } else {
-      _news = Serviceapi.fetchTopHeadlinesByCategory(_selectedCategory);
+      _news = Serviceapi.fetchTopHeadlinesByCategory(selectedCategory!);
     }
-    notifyListeners();
+notifyListeners();
   }
 }

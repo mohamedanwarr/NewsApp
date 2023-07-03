@@ -5,7 +5,6 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../Widgets/ButtonBlue.dart';
 
-
 class DetailsPage extends StatefulWidget {
   final String? url;
   final String? urlToImage;
@@ -64,7 +63,12 @@ class _DetailsPageState extends State<DetailsPage> {
         body: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      HeaderDetails(height: height, widget: widget),
+      HeaderDetails(
+        height: height,
+        widget: widget,
+        image: widget.urlToImage ?? 'assets/not found.png',
+        title: '${widget.title}', subtitle: widget.author ?? "Unknown Author",
+      ),
       Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -107,5 +111,3 @@ class _DetailsPageState extends State<DetailsPage> {
     ])));
   }
 }
-
-

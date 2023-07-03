@@ -14,7 +14,8 @@ import '../Widgets/CategoryList.dart';
 import '../main.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+   const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-
+    context.read<CategoryProvider>().setCategory('All');
     getCurrentDate();
   }
 
