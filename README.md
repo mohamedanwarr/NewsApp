@@ -5,21 +5,30 @@ A news app built with flutter and news api endpoint.
 ## Getting Started
 
 🔌 Plugins :
+
   ◽ animated_splash_screen:
+  
   ◽  lottie
+  
   ◽  intl: 
+  
   ◽  http
+  
   ◽  webviMw_flutter
+  
   ◽ google_fonts
   
- ✨ State Management : Provider
+  
+ ♣️ State Management : Provider
 
 📱ScreenShots: 
 
 🌇 Light mode:
+
 ![Picsart_23-07-04_15-11-24-628](https://github.com/mohamedanwarr/NewsApp/assets/81979968/37d970b5-294a-4a4b-a867-a25e402387b8)
 
 🌉 Dark mode :
+
 ![Picsart_23-07-04_15-14-07-854](https://github.com/mohamedanwarr/NewsApp/assets/81979968/0f3ead03-004d-4a70-bbb2-04b02baeabc1)
 
 
