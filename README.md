@@ -14,18 +14,14 @@ A news app built with flutter and news api endpoint.
   
  ✨ State Management : Provider
 
-📱ScreenShots:
-![Screenshot_20230703_212053](https://github.com/mohamedanwarr/NewsApp/assets/81979968/30fa9518-d46a-4215-84de-b2cd89c150e0)
+📱ScreenShots: 
 
-![Screenshot_20230703_212111](https://github.com/mohamedanwarr/NewsApp/assets/81979968/b4114b8f-cbdf-438b-a683-120334ec5765)
+🌇 Light mode:
+![Picsart_23-07-04_15-11-24-628](https://github.com/mohamedanwarr/NewsApp/assets/81979968/37d970b5-294a-4a4b-a867-a25e402387b8)
 
+🌉 Dark mode :
+![Picsart_23-07-04_15-14-07-854](https://github.com/mohamedanwarr/NewsApp/assets/81979968/0f3ead03-004d-4a70-bbb2-04b02baeabc1)
 
-![Screenshot_20230703_212250](https://github.com/mohamedanwarr/NewsApp/assets/81979968/35b16042-5402-483b-ade8-6f8700ab62d5)
-
-![Screenshot_20230703_212305](https://github.com/mohamedanwarr/NewsApp/assets/81979968/0cfcc994-afd2-49a0-a206-551d91816a93)
-
-
-![Screenshot_20230703_212331](https://github.com/mohamedanwarr/NewsApp/assets/81979968/c32914b1-c228-4800-9fec-71e8be3268c8)
 
 
 🔗 API Information:
